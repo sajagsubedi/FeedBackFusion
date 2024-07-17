@@ -6,7 +6,7 @@ type connectionObject = {
 
 const connection: connectionObject = {};
 
-const connectDb = async () => {
+const connectDb = async () :Promise<void>=> {
   if (connection.isConnected) {
     return;
   }
