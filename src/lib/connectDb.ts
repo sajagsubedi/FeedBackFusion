@@ -7,10 +7,12 @@ type connectionObject = {
 const connection: connectionObject = {};
 
 const connectDb = async () :Promise<void>=> {
+
+
+  try {
   if (connection.isConnected) {
     return;
   }
-  try {
     const uri = process.env.MONGO_URI;
     if (!uri) {
       throw new Error("MONGO_URI environment variable is not defined.");
@@ -18,6 +20,7 @@ const connectDb = async () :Promise<void>=> {
     const db = await mongoose.connect(uri);
     connection.isConnected = db.connections[0].readyState;
   } catch (error) {
+    console.log(error);
     process.exit(1);
   }
 };
