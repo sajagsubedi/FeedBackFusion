@@ -11,6 +11,7 @@ const connectDb = async () :Promise<void>=> {
 
   try {
   if (connection.isConnected) {
+    console.log("Already connected to MongoDB")
     return;
   }
     const uri = process.env.MONGO_URI;

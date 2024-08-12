@@ -2,18 +2,22 @@ import User from "@/models/User.model";
 import connectDb from "@/lib/connectDb";
 import bcryptjs from "bcryptjs";
 import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
+import { NextResponse } from "next/server";
+import {Types} from "mongoose";
 
-export async function POST(request: Request) {
+export const POST=async(request: Request ) => {
+
   console.log(`Signup`);
   // Connect to the database
   await connectDb();
-  console.log("Connected to MongoDB");
   try {
+
+const reqBody=await request.json()
     // Get the username, password, and email from the request body
-    const { username, password, email } = await request.json();
+    const { username, password, email } = reqBody;
     // Check if all fields are provided
     if (!username || !password || !email) {
-      return Response.json(
+      return NextResponse.json(
         { success: false, message: "Please provide all the fields" },
         {
           status: 400,
@@ -26,7 +30,7 @@ export async function POST(request: Request) {
       isVerified: true,
     });
     if (existingUserWithUsername) {
-      return Response.json(
+      return NextResponse.json(
         {
           success: false,
           message: "User with username already exists",
@@ -44,7 +48,7 @@ export async function POST(request: Request) {
     if (existingUserWithEmail) {
       // If the user with the same email exists and is verified, return an error
       if (existingUserWithEmail.isVerified) {
-        return Response.json(
+        return NextResponse.json(
           {
             success: false,
             message: "User with email already exists",
@@ -55,7 +59,7 @@ export async function POST(request: Request) {
         );
       } else {
         // If the user with the same email exists but is not verified, update the user's information
-        const hashedPassword = await bcryptjs.hashSync(password, 10);
+        const hashedPassword = bcryptjs.hashSync(password, 10);
         const verifyCodeExpiry = new Date(Date.now() + 3600000);
         existingUserWithEmail.password = hashedPassword;
         existingUserWithEmail.verifyCode = verifyCode;
@@ -86,7 +90,7 @@ export async function POST(request: Request) {
       verifyCode,
     );
     if (!emailResponse.success) {
-      return Response.json(
+     return NextResponse.json(
         {
           success: false,
           message: emailResponse.message,
@@ -95,7 +99,7 @@ export async function POST(request: Request) {
       );
     }
     // Return a success response
-    return Response.json(
+    return  NextResponse.json(
       {
         success: true,
         message:
@@ -103,8 +107,15 @@ export async function POST(request: Request) {
       },
       { status: 201 },
     );
-  } catch (error) {
+  } catch (error:any) {
     console.log(error);
-  }
-} 
+    return NextResponse.json(
+      {
+        success: false,
+        message: error.message,
+      },
+      { status: 500 },
+    );
 
+    }  
+} 
