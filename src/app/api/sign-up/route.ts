@@ -3,7 +3,6 @@ import connectDb from "@/lib/connectDb";
 import bcryptjs from "bcryptjs";
 import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
 import { NextResponse } from "next/server";
-import {Types} from "mongoose";
 
 export const POST=async(request: Request ) => {
 
