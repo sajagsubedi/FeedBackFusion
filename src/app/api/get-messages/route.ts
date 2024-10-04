@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import UserModel from "@/models/User.model";
 import mongoose from "mongoose";
 
-export async function POST(request: Request) {
+export async function GET(request: Request) {
   await connectDb();
   const session = await getServerSession(authOptions);
   const user: User = session?.user;
@@ -46,6 +46,8 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       messages: foundUser[0]?.messages,
+    },{
+        status:200
     });
   } catch (err) {
     return NextResponse.json(
