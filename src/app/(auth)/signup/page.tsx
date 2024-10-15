@@ -97,8 +97,8 @@ export default function ProfileForm() {
   return (
     <section className="w-full h-screen p-8 flex justify-center items-center">
       <div className="w-96 p-8 shadow-2xl rounded-md">
-        <h2 className="text-3xl font-bold mb-8">
-          Get <span className="text-indigo-500 text-center">started</span> with
+        <h2 className="text-3xl font-bold mb-8 text-center">
+          Get <span className="text-indigo-500 ">started</span> with
           Us
         </h2>
         <Form {...form}>
