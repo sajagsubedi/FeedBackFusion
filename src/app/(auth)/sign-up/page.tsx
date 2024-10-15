@@ -22,7 +22,7 @@ import { ApiResponse } from "@/types/ApiResponse";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function ProfileForm() {
+export default function Page() {
   const [username, setUsername] = useState("");
   const [usernameMessage, setUsernameMessage] = useState(""); //message from api on checking username validation
   const [isCheckingUsername, setIsCheckingUsername] = useState(false); //for showing loader below username input
@@ -159,7 +159,7 @@ export default function ProfileForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
-                  <Input {...field} name="password" placeholder="••••••••" />
+                  <Input {...field} name="password" placeholder="••••••••" type="password" />
                   <FormMessage />
                 </FormItem>
               )}
@@ -167,7 +167,7 @@ export default function ProfileForm() {
             <div>
               <Button
                 className="bg-indigo-500 w-full hover:bg-indigo-600 mt-8"
-                type="submit"
+                type="submit" disabled={isSubmitting}
               >
                 {isSubmitting ? (
                   <>
@@ -191,7 +191,7 @@ export default function ProfileForm() {
                     mt-6"
         >
           Already have a account?
-          <Link className="text-indigo-500 underline" href="/signin">
+          <Link className="text-indigo-500 underline" href="/sign-in">
             Signin
           </Link>
         </p>

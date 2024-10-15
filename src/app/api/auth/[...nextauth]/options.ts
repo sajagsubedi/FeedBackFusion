@@ -13,12 +13,10 @@ export const authOptions: NextAuthOptions = {
         email: {
           label: "Email",
           type: "text",
-          placeholder: "example@feedbackfusion.com",
         },
         password: {
           label: "Password",
           type: "password",
-          placeholder: ".......",
         },
       },
       async authorize(credentials: any): Promise<any> {
@@ -26,10 +24,11 @@ export const authOptions: NextAuthOptions = {
         try {
           const existingUser = await UserModel.findOne({
             $or: [
-              { email: credentials?.email },
-              { password: credentials?.password },
+              { email: credentials?.identifier },
+              { username: credentials?.identifier },
             ],
           });
+
           if (!existingUser) {
             throw new Error("Please enter correct credentials!");
           }
@@ -37,12 +36,10 @@ export const authOptions: NextAuthOptions = {
           if (!existingUser.isVerified) {
             throw new Error("Please verify your account before signing in!");
           }
-
           const isPasswordCorrect = await bcrypt.compare(
             credentials?.password,
             existingUser.password
           );
-
           if (!isPasswordCorrect) {
             throw new Error("Please enter correct credentials!");
           }
@@ -59,7 +56,6 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token._id = user._id?.toString();
         token.username = user.username;
-        token.email = user.email;
         token.isVerified = user.isVerified;
         token.isAcceptingMesages = user.isAcceptingMesages;
       }
@@ -69,7 +65,6 @@ export const authOptions: NextAuthOptions = {
       if (token) {
         session.user._id = token._id;
         session.user.username = token.username;
-        session.user.email = token.email;
         session.user.isVerified = token.isVerified;
         session.user.isAcceptingMesages = token.isAcceptingMesages;
       }
