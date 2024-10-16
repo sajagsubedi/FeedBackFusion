@@ -19,10 +19,11 @@ export async function GET(request: Request) {
     );
   }
   const userId = new mongoose.Types.ObjectId(user._id);
+  console.log(userId);
   try {
     const foundUser = await UserModel.aggregate([
       { $match: { _id: userId } },
-      { $unwind: "$messages" },
+      { $unwind: { path: "$messages", preserveNullAndEmptyArrays: true } },
       { $sort: { "messages.createdAt": -1 } },
       {
         $group: {
@@ -32,8 +33,8 @@ export async function GET(request: Request) {
           },
         },
       },
-    ]).exec();
-
+    ]);
+    console.log(foundUser);
     if (!foundUser || foundUser.length === 0) {
       return NextResponse.json(
         {
@@ -43,12 +44,15 @@ export async function GET(request: Request) {
         { status: 404 }
       );
     }
-    return NextResponse.json({
-      success: true,
-      messages: foundUser[0]?.messages,
-    },{
-        status:200
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        messages: foundUser[0]?.messages,
+      },
+      {
+        status: 200,
+      }
+    );
   } catch (err) {
     return NextResponse.json(
       {
