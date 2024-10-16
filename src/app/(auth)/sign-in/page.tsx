@@ -50,7 +50,7 @@ export default function Page() {
         });
     }
     if(result?.url){
-      router.replace("/")
+      router.replace("/dashboard")
     }
   };
   return (
