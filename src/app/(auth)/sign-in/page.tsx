@@ -50,12 +50,12 @@ export default function Page() {
         });
     }
     if(result?.url){
-      router.push("/dashboard")
+      router.replace("/")
     }
   };
   return (
-    <section className="w-full h-screen p-8 flex justify-center items-center">
-      <div className="w-96 p-8 shadow-2xl rounded-md">
+    <section className="w-full h-screen p-8 flex justify-center md:items-center">
+      <div className="w-96 p-8 shadow-2xl rounded-md h-max">
       <h2 className=" text-2xl md:text-3xl mb-4 font-bold title-font text-left ">
                     Hey&#44;<br/>
                         <span className="text-indigo-500">Welcome</span> back. 

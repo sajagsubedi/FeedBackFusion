@@ -40,7 +40,7 @@ export const GET = async (request: Request) => {
       return NextResponse.json(
         {
           success: false,
-          message: "User with username already exists!",
+          message: "Username isn't available! Please try another.",
         },
         { status: 400 }
       );

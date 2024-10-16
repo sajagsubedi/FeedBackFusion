@@ -95,8 +95,8 @@ export default function Page() {
     }
   };
   return (
-    <section className="w-full h-screen p-8 flex justify-center items-center">
-      <div className="w-96 p-8 shadow-2xl rounded-md">
+    <section className="w-full h-screen p-8 flex justify-center md:items-center">
+      <div className="w-96 p-8 shadow-2xl rounded-md h-max">
         <h2 className="text-3xl font-bold mb-8 text-center">
           Get <span className="text-indigo-500 ">started</span> with
           Us
@@ -111,7 +111,7 @@ export default function Page() {
                   <FormLabel>Username</FormLabel>
                   <Input
                     {...field}
-                    placeholder="John Doe"
+                    placeholder="johndoe"
                     onChange={(e) => {
                       field.onChange(e);
                       setUsername(e.target.value);
@@ -145,9 +145,6 @@ export default function Page() {
                     name="email"
                     placeholder="johndoe@example.com"
                   />
-                  <p className="text-muted text-gray-400 text-sm">
-                    We will send you a verification code
-                  </p>
                   <FormMessage />
                 </FormItem>
               )}
