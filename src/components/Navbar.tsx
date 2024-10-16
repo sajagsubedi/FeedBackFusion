@@ -21,8 +21,7 @@ export default function Navbar() {
             </span>
           </h3>
           <Button
-            gap-3
-            className="bg-indigo-500 w-max hover:bg-indigo-600"
+            className="bg-indigo-500 w-max hover:bg-indigo-600 gap-3"
             onClick={() => signOut()}
           >
             Logout

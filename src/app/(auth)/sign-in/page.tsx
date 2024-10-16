@@ -44,7 +44,7 @@ export default function Page() {
 
     if(result?.error){
         toast({
-          title: "Sign Up Failed",
+          title: "Sign In Failed",
           description: result?.error,
           variant: "destructive",
         });

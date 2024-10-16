@@ -18,6 +18,7 @@ import { Message } from "@/models/User.model";
 import axios, { AxiosError } from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
 import { useToast } from "@/hooks/use-toast";
+import dayjs from "dayjs";
 
 interface MessageCardProps {
   message: Message;
@@ -77,9 +78,11 @@ export default function MessageCard({
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      <div className="flex flex-col">
-        <h4 className="text-2xl font-bold">What;s going on</h4>
-        <p className="text-sm"></p>
+      <div className="flex flex-col space-y-2">
+        <h4 className="text-xl font-bold">{message.content}</h4>
+        <p className="text-sm">
+          {dayjs(message.createdAt).format("MMM D, YYYY h:mm A")}
+        </p>
       </div>
     </Card>
   );

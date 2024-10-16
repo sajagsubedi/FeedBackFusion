@@ -17,12 +17,12 @@ export async function POST(request: Request) {
       { status: 401 }
     );
   }
-  const { isAcceptingMesages } = await request.json();
+  const { acceptMessages } = await request.json();
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(
       user?._id,
       {
-        isAcceptingMessages: isAcceptingMesages,
+        isAcceptingMessages: acceptMessages,
       },
       {
         new: true,
