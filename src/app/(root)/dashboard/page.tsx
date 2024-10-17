@@ -24,11 +24,12 @@ export default function Page() {
   const [isLoading, setIsLoading] = useState(false); // for showing loader during fetching from backend
   const [isSwitchLoading, setIsSwitchLoading] = useState(false); // for diabling switch during loading
 
-  const router = useRouter(); //initialization fo toast
   const { toast } = useToast(); //initialization of toast
 
   const handleDeleteMessages = (messageId: string) => {
-    setMessages((msgs) => msgs.filter((msg) => msg._id !== messageId)); //deletimg messages on frontend
+    setMessages((msgs) => {
+      return msgs.filter((msg) => msg._id !== messageId);
+    }); //deletimg messages on frontend
   };
 
   const { data: session } = useSession(); // session of user
