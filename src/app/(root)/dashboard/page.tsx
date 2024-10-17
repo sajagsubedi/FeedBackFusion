@@ -61,7 +61,7 @@ export default function Page() {
     } finally {
       setIsSwitchLoading(false);
     }
-  }, [setValue]);
+  }, [setValue,toast]);
 
   //function to fetch messages for user
   const fetchMessages = useCallback(

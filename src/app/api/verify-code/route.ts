@@ -49,7 +49,6 @@ export const POST = async (request: Request) => {
       );
     }
   } catch (error: any) {
-    console.log(error);
     return NextResponse.json(
       {
         success: false,

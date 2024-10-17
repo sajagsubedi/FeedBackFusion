@@ -13,7 +13,6 @@ export async function GET(req: Request) {
 
     const suggestedMessages = `${msg1}||${msg2}||${msg3}`;
 
-    console.log(suggestedMessages)
     return NextResponse.json(
       {
         success: true,

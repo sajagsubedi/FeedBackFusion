@@ -115,7 +115,7 @@ export default function Page() {
           className="flex gap-2 text-sm justify-end 
                     mt-6"
         >
-          Don't have a account?
+          Don&apos;t have a account?
           <Link className="text-indigo-500 underline" href="/sign-up">
             Signup
           </Link>

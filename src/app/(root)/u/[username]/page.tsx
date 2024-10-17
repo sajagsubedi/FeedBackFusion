@@ -44,7 +44,6 @@ export default function Page() {
 
   const messageContent=form.watch("content")
   const onSubmit = async (data: z.infer<typeof messageSchema>) => {
-    console.log("ON submit");
     setIsSubmitting(true);
     try {
       const response = await axios.post<ApiResponse>("/api/send-messages", {

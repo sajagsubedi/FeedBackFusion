@@ -44,27 +44,27 @@ export default function Page() {
     },
   });
 
-  const checkUserNameUnique = async () => {
-    if (debouncedUsername) {
-      setIsCheckingUsername(true);
-      setUsernameMessage("");
-      try {
-        const response = await axios.get<ApiResponse>(
-          `/api/check-username-unique?username=${debouncedUsername}`
-        );
-        setUsernameMessage(response?.data?.message);
-      } catch (error) {
-        const axiosError = error as AxiosError<ApiResponse>;
-        setUsernameMessage(
-          axiosError?.response?.data?.message || "Error checking username"
-        );
-      } finally {
-        setIsCheckingUsername(false);
-      }
-    }
-  };
 
   useEffect(() => {
+    const checkUserNameUnique = async () => {
+      if (debouncedUsername) {
+        setIsCheckingUsername(true);
+        setUsernameMessage("");
+        try {
+          const response = await axios.get<ApiResponse>(
+            `/api/check-username-unique?username=${debouncedUsername}`
+          );
+          setUsernameMessage(response?.data?.message);
+        } catch (error) {
+          const axiosError = error as AxiosError<ApiResponse>;
+          setUsernameMessage(
+            axiosError?.response?.data?.message || "Error checking username"
+          );
+        } finally {
+          setIsCheckingUsername(false);
+        }
+      }
+    };
     checkUserNameUnique();
   }, [debouncedUsername]);
 

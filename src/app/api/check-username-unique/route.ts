@@ -53,7 +53,6 @@ export const GET = async (request: Request) => {
       { status: 200 }
     );
   } catch (error: any) {
-    console.log(error);
     return NextResponse.json(
       {
         success: false,

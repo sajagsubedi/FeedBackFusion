@@ -5,8 +5,6 @@ import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
 import { NextResponse } from "next/server";
 
 export const POST=async(request: Request ) => {
-
-  console.log(`Signup`);
   // Connect to the database
   await connectDb();
   try {
@@ -107,7 +105,6 @@ const reqBody=await request.json()
       { status: 201 },
     );
   } catch (error:any) {
-    console.log(error);
     return NextResponse.json(
       {
         success: false,
