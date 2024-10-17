@@ -139,7 +139,7 @@ export default function Page() {
 
   return (
     <section className="w-full">
-      <div className="w-full bg-indigo-50 py-5 px-[10vw]">
+      <div className="w-full bg-indigo-50 py-5 md:px-[10vw] px-4">
         <h2 className="font-bold text-2xl">
           Welcome to <span className="text-indigo-500">User</span> Dasboard
         </h2>
@@ -178,16 +178,33 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 px-[10vw] py-10">
-        {messages?.map((message, index) => {
-          return (
-            <MessageCard
-              key={index}
-              message={message}
-              onMessageDelete={handleDeleteMessages}
-            />
-          );
-        })}
+      <div className="md:px-[10vw] py-2 px-4">
+        <Button
+          onClick={() => fetchMessages(true)}
+          variant="outline"
+          disabled={isLoading}
+        >
+          <span className="sr-only">Refresh</span>{" "}
+          {isLoading ? <Loader2 /> : <RefreshCcw />}
+        </Button>
+      </div>
+
+      <div className="md:px-[10vw] py-10 px-4">
+        {messages.length > 0 ? (
+          <div className="grid grid-cols-3 ">
+            {messages?.map((message, index) => {
+              return (
+                <MessageCard
+                  key={index}
+                  message={message}
+                  onMessageDelete={handleDeleteMessages}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <p>No messages to display</p>
+        )}
       </div>
     </section>
   );

@@ -10,12 +10,13 @@ export default function Navbar() {
   const { data: session } = useSession();
   const user: User = session?.user;
   return (
-    <nav className="flex shadow-md h-16 w-full items-center py-4  px-8 justify-between">
+    <nav className="flex shadow-md min-h-16 w-full items-center py-4  px-8 justify-between flex-col md:flex-row gap-3">
       <h2 className="text-2xl font-bold">FeedBackFusion</h2>
+      <hr className="w-[100vw] text-gray-500 md:hidden"/>
       {session ? (
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 justify-between w-full md:w-auto">
           <h3 className="text-lg">
-            Welcome,{" "}
+            Welcome,
             <span className="font-medium text-indigo-500">
               {user?.username || user?.email}
             </span>

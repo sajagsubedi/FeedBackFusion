@@ -19,7 +19,6 @@ export async function GET(request: Request) {
     );
   }
   const userId = new mongoose.Types.ObjectId(user._id);
-  console.log(userId);
   try {
     const foundUser = await UserModel.aggregate([
       { $match: { _id: userId } },
@@ -34,7 +33,6 @@ export async function GET(request: Request) {
         },
       },
     ]);
-    console.log(foundUser);
     if (!foundUser || foundUser.length === 0) {
       return NextResponse.json(
         {
