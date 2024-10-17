@@ -72,9 +72,15 @@ export default function MessageCard({
                 Cancel
               </Button>
             </DialogClose>
-            <Button type="button" variant="destructive" onClick={deleteMessage}>
-              Delete
-            </Button>
+            <DialogClose asChild>
+              <Button
+                type="button"
+                variant="destructive"
+                onClick={deleteMessage}
+              >
+                Delete
+              </Button>
+            </DialogClose>
           </DialogFooter>
         </DialogContent>
       </Dialog>

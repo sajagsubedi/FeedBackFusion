@@ -37,7 +37,7 @@ export default function Page() {
     resolver: zodResolver(AcceptMessageSchema), //data validation in form through AcceptMessageSchema
   });
 
-  //destructing ( watch to review the switchchange) , (setvalue to change acceptMessages after api call) and (register to register the switch change value to form for validation)
+  //destructing ( watch to review the switchchange) , (setvalue: to change status acceptMessages after api call) and (register to register the switch change value to form for validation)
   const { watch, setValue, register } = form;
 
   const acceptMessages = watch("acceptMessages"); //watch the value of form field with name "acceptMessages"
