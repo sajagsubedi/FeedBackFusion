@@ -156,7 +156,7 @@ export default function Page() {
             )))}
           {
             isLoadingMessages &&
-            <Loader2 className="w-16 h-16 mx-auto self-center my-6"/>
+            <Loader2 className="w-16 h-16 mx-auto self-center my-6 animate-spin"/>
           }
           </CardContent>
         </Card>

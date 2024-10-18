@@ -185,8 +185,8 @@ export default function Page() {
           variant="outline"
           disabled={isLoading}
         >
-          <span className="sr-only">Refresh</span>{" "}
-          {isLoading ? <Loader2 /> : <RefreshCcw />}
+          <span className="sr-only">Refresh</span>
+          {isLoading ? <Loader2 className="animate-spin"/> : <RefreshCcw />}
         </Button>
       </div>
 
