@@ -53,7 +53,7 @@ export default function Page() {
       });
 
       // Redirect to sign-in page on success
-      router.replace(`/signin`);
+      router.replace(`/sign-in`);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
 
